@@ -7,6 +7,7 @@ module V1
     end
 
     def create
+      UpdateSkuJob.perform_later(book_params[:title])
       if Author.find_by(first_name: author_params[:first_name])
         author = Author.find_by(first_name: author_params[:first_name])
       else
